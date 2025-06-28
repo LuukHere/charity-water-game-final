@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Charity Water: Oh Well</title>
+    <link rel="stylesheet" href = "styles.css">
+</head>
+
+<body>
+    <div id="how-to-play-overlay">
+        <div class="how-to-play-content">
+            <h2>How to Play</h2>
+            <ul>
+                <li>Click a tile to dig with your shovel.</li>
+                <li>You can only dig tiles in the top row or next to a revealed tile.</li>
+                <li>Some tiles need more than one dig to reveal.</li>
+                <li>Rocks <span style="font-size:1.2em;">⛰️</span> cannot be dug through.</li>
+                <li>Reach the bottom row before you run out of shovels to win!</li>
+            </ul>
+            <button id="start-game-btn">Start Game</button>
+        </div>
+    </div>
+
+    <header>
+        <h1>Oh Well</h1>
+        <h3>
+            <img src="img/pngegg.png" alt="Charity Water Logo" style="height:3em; vertical-align:middle; margin-right:0.4em;">
+            Charity Water
+        </h3>
+
+        <div id="hud">
+            <span id="shovel">
+                <img src="img/591419.png" alt="shovel">
+                0
+            </span>
+            <!--<span id="score">Score: 0</span>-->
+        </div>
+
+    </header>
+    <main>
+        <div>
+            <div id="game"></div>
+            <div id="water"></div>
+            <!-- This will be where on gameOver the message is displayed -->
+            <div id="message"></div>
+            <button id="restart">Restart</button>
+        </div>
+    </main>
+</body>
+
+<footer>
+
+</footer>
+
+<script src="script.js"></script>
+
+</html>
