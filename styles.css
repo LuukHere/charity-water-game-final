@@ -1,7 +1,8 @@
 body {
     background: #181818;
     color: #fff;
-    font-family: Arial, sans-serif;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
     margin: 0;
     padding: 0;
     min-height: 100vh;
@@ -256,5 +257,39 @@ water {
     box-shadow: 0 2px 8px #0004;
 }
 #start-game-btn:hover {
+    background: #FFB300;
+}
+.difficulty-btn {
+    padding: 0.5em 1.5em;
+    font-size: 1em;
+    background: #FFD600;
+    color: #181818;
+    border: none;
+    border-radius: 0.5em;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0 0.2em;
+    box-shadow: 0 2px 8px #0002;
+    transition: background 0.2s, color 0.2s;
+}
+.difficulty-btn.selected,
+.difficulty-btn:focus {
+    background: #FFB300;
+    color: #fff;
+    outline: 2px solid #FFD600;
+}
+#charity-water-btn {
+    padding: 0.5em 1.5em;
+    font-size: 1.2em;
+    background: #FFD600;
+    color: #181818;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 1em;
+    box-shadow: 0 2px 8px #0004;
+}
+#charity-water-btn:hover {
     background: #FFB300;
 }

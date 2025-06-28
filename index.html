@@ -18,6 +18,11 @@
                 <li>Rocks <span style="font-size:1.2em;">⛰️</span> cannot be dug through.</li>
                 <li>Reach the bottom row before you run out of shovels to win!</li>
             </ul>
+            <div id="difficulty-select" style="margin-bottom:1em;">
+                <button class="difficulty-btn" data-map="0" style="margin-right:0.5em;">Easy</button>
+                <button class="difficulty-btn" data-map="1" style="margin-right:0.5em;">Medium</button>
+                <button class="difficulty-btn" data-map="2">Hard</button>
+            </div>
             <button id="start-game-btn">Start Game</button>
         </div>
     </div>
@@ -31,11 +36,11 @@
 
         <div id="hud">
             <span id="shovel">
-                <img src="img/591419.png" alt="shovel">
                 0
             </span>
             <!--<span id="score">Score: 0</span>-->
         </div>
+        
 
     </header>
     <main>
@@ -47,10 +52,14 @@
             <button id="restart">Restart</button>
         </div>
     </main>
+    <button id="charity-water-btn" style="display:flex;align-items:center;justify-content:center;margin:2em auto 2em auto;padding:0.5em 2em;background:#222;color:#FFD600;border:none;border-radius:1em;font-size:1.5em;font-weight:bold;box-shadow:0 2px 8px #0004;cursor:pointer;">
+        <img src="img/pngegg.png" alt="Charity Water Logo" style="height:3em; vertical-align:middle; margin-right:0.4em;">
+        Donate to Charity Water!
+    </button>
 </body>
 
 <footer>
-
+    
 </footer>
 
 <script src="script.js"></script>

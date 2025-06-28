@@ -11,41 +11,41 @@ const shovelSpan = document.getElementById('shovel');
 //const scoreSpan = document.getElementById('score');
 
 //Manual map creation
-const map1 = [
+const easyMap = [
     ['dirt','dirt','rock','dirt','dirt','dirt','dirt'],
     ['dirt','hard','dirt','dirt','rock','dirt','dirt'],
     ['dirt','dirt','dirt','hard','dirt','dirt','dirt'],
     ['dirt','dirt','dirt','dirt','dirt','rock','dirt'],
     ['dirt','rock','dirt','dirt','dirt','dirt','dirt'],
     ['dirt','dirt','dirt','dirt','hard','dirt','dirt'],
+    ['rock','dirt','dirt','dirt','dirt','dirt','rock'],
     ['dirt','dirt','dirt','dirt','dirt','dirt','dirt'],
-    ['dirt','dirt','dirt','dirt','dirt','dirt','dirt'],
-    ['dirt','dirt','rock','dirt','dirt','dirt','dirt'],
-    ['dirt','dirt','dirt','dirt','dirt','dirt','dirt'],
+    ['dirt','dirt','rock','hard','dirt','dirt','dirt'],
+    ['dirt','dirt','dirt','hard','dirt','hard','dirt'],
 ];
-const map2 = [
+const mediumMap = [
     ['dirt','dirt','dirt','dirt','dirt','dirt','dirt'],
     ['dirt','rock','dirt','hard','dirt','dirt','dirt'],
     ['dirt','dirt','rock','dirt','hard','dirt','dirt'],
-    ['dirt','hard','dirt','rock','dirt','dirt','dirt'],
+    ['rock','hard','dirt','rock','dirt','dirt','dirt'],
     ['dirt','dirt','hard','rock','dirt','rock','dirt'],
     ['dirt','rock','dirt','hard','dirt','rock','dirt'],
     ['hard','rock','dirt','dirt','hard','rock','dirt'],
     ['dirt','rock','hard','dirt','hard','rock','dirt'],
     ['dirt', 'rock', 'hard', 'rock', 'dirt', 'hard', 'rock'],
-    ['dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt'],
+    ['hard', 'dirt', 'dirt', 'dirt', 'hard', 'dirt', 'dirt'],
 ];
-const map3 = [
+const hardMap = [
     ['dirt','dirt','dirt','dirt','dirt','dirt','dirt'],
-    ['dirt','rock','dirt','hard','dirt','dirt','dirt'],
+    ['dirt','rock','dirt','hard','dirt','dirt','rock'],
     ['dirt','dirt','rock','dirt','hard','dirt','dirt'],
-    ['dirt','hard','dirt','rock','dirt','dirt','dirt'],
+    ['rock','hard','dirt','rock','dirt','dirt','dirt'],
     ['dirt','dirt','hard','rock','dirt','rock','dirt'],
     ['dirt','rock','dirt','hard','dirt','rock','dirt'],
     ['hard', 'rock', 'dirt', 'hard', 'rock', 'dirt', 'hard'],
     ['dirt', 'hard', 'rock', 'dirt', 'hard', 'rock', 'dirt'],
-    ['dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt'],
-    ['dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt'],
+    ['hard', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'hard'],
+    ['dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'rock'],
 ];
 
 //Tile Types
@@ -63,14 +63,14 @@ function makeManualGrid(layout) {
     );
 }
 
+let selectedMapIndex = 0; // Default to easy
+
+const maps = [easyMap, mediumMap, hardMap];
+
 // Game Initialization
 // Resets and starts a new game
 function startGame() {
-    const maps = [map1, map2, map3];
-    const randomIndex = Math.floor(Math.random() * maps.length);
-    
-
-    grid = makeManualGrid(maps[randomIndex]); // Create grid from manual layout
+    grid = makeManualGrid(maps[selectedMapIndex]);
     shovel = maxShovels;
     gameOver = false;
     score = 0;
@@ -80,7 +80,7 @@ function startGame() {
 
 // Updates the HUD (shovel, score, high score)
 function updateHUD() {
-  shovelSpan.textContent = `Shovel: ${shovel}`;
+  shovelSpan.textContent = `Shovels: ${shovel}`;
   //scoreSpan.textContent = `Score: ${score}`;
 }
 
@@ -193,7 +193,11 @@ function render() {
           
 restartBtn.addEventListener('click', function () {
     gameOver = false;
-    startGame();
+    // Show overlay and blur background again
+    document.getElementById('how-to-play-overlay').style.display = 'flex';
+    document.querySelector('main').style.filter = 'blur(2px)';
+    document.querySelector('header').style.filter = 'blur(2px)';
+    document.querySelector('footer').style.filter = 'blur(2px)';
 });
 
 
@@ -242,3 +246,19 @@ function showEndScreen(win) {
         `;
     }
 }
+
+// Difficulty selector logic
+const difficultyBtns = document.querySelectorAll('.difficulty-btn');
+difficultyBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+        difficultyBtns.forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectedMapIndex = parseInt(btn.getAttribute('data-map'));
+    });
+});
+// Set default selected
+difficultyBtns[0].classList.add('selected');
+
+document.getElementById('charity-water-btn').onclick = function() {
+    window.open('https://www.charitywater.org/main', '_blank');
+};
